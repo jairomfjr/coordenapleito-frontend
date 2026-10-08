@@ -1,0 +1,59 @@
+{
+  "name": "coordenapleito-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "overrides": {
+    "glob": "^10.5.0"
+  },
+  "scripts": {
+    "clean": "rm -rf .next .next-dev node_modules/.cache",
+    "dev": "NODE_OPTIONS=--max-http-header-size=65536 NEXT_PUBLIC_API_URL= NEXT_IGNORE_INCORRECT_LOCKFILE=1 next dev",
+    "dev:turbo": "cross-env NODE_OPTIONS=--max-http-header-size=65536 NEXT_IGNORE_INCORRECT_LOCKFILE=1 next dev --turbopack",
+    "dev:reset": "npm run clean && npm run dev",
+    "build": "next build --turbopack",
+    "build:webpack": "next build",
+    "start": "NODE_OPTIONS=--max-http-header-size=65536 next start",
+    "start:standalone": "NODE_OPTIONS=--max-http-header-size=65536 node .next/standalone/server.js",
+    "lint": "next lint",
+    "audit:permissions": "node ../scripts/audit-permissions.mjs",
+    "audit:preauthorize": "python3 ../scripts/check-controller-preauthorize.py",
+    "check:modulo": "node ../scripts/check-new-module-permissions.mjs",
+    "test:backend-origin": "npx --yes tsx --test src/lib/backendOrigin.test.ts",
+    "test:permissions": "npx --yes tsx --test src/lib/permissions.strict.test.ts",
+    "postinstall": "mkdir -p public/pdfjs && cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdfjs/pdf.worker.min.mjs"
+  },
+  "dependencies": {
+    "@fontsource/kanit": "^5.2.8",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-regular-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-query": "^5.100.11",
+    "axios": "^1.7.7",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.454.0",
+    "next": "^15.5.14",
+    "pdfjs-dist": "^4.10.38",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-leaflet": "^4.2.1",
+    "react-toastify": "^11.0.0",
+    "recharts": "^3.7.0",
+    "sharp": "^0.33.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.5.14",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,32 @@
+# Frontend em homologação (VPS).
+# A URL da API no browser é resolvida por hostname: hcoordenapleito → mesma origem + /coordenapleito-api.
+# Não defina NEXT_PUBLIC_API_URL=http://localhost:8080 no build da VPS.
+#
+# IMPORTANTE: usar estágio production (build + start). Nunca subir com `next dev` em homologação.
+#
+# Uso na pasta coordenapleito-frontend:
+#   docker compose -f docker-compose.stage.yml build --no-cache
+#   docker compose -f docker-compose.stage.yml up -d
+#
+# Após atualizar o código:
+#   docker compose -f docker-compose.stage.yml up -d --build
+
+services:
+  coordenapleito-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+        NEXT_IMAGE_UNOPTIMIZED: ${NEXT_IMAGE_UNOPTIMIZED:-}
+    image: hub.sps.ce.gov.br/coordenapleito/coordenapleito-frontend:stage
+    container_name: coordenapleito-frontend-homolog
+    network_mode: net_sps
+    environment:
+      NODE_ENV: production
+    ports:
+      - ':3000'
+    restart: always
+

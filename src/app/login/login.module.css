@@ -1,0 +1,464 @@
+/* Layout geral da página de login */
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Header teal (como no layout desejado) */
+.topHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+  background: #00A38D;
+  flex-shrink: 0;
+}
+
+.headerLeft {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.acessibilidade {
+  font-size: 0.8125rem;
+  color: #fff;
+  margin-right: 0.25rem;
+}
+
+.fontBtn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  color: #1f2937;
+}
+
+.fontBtn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.darkModeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  color: #1f2937;
+}
+
+.darkModeBtn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Área principal: fundo + conteúdo */
+.mainArea {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Linha com space-between: duas seções centralizadas no meio */
+.contentRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
+}
+
+/* Seção Equipamentos – metade esquerda, logo mais embaixo na tela */
+.equipamentosSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  padding-top: 16rem;
+}
+
+/* Seção do card de login – metade direita, conteúdo centralizado */
+.cardSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+}
+
+.bgImg {
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.68);
+}
+
+/* Logo SPS no topo à esquerda, sobre o fundo (sem faixa) */
+.spsBanner {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+  z-index: 1;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.spsLogo {
+  display: block;
+  height: auto;
+  width: 300px;
+  max-width: 340px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+/* Logo do sistema EQUIPAMENTOS – na área à esquerda, centralizado */
+.systemLogoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.systemLogo {
+  display: block;
+  height: auto;
+  width: 520px;
+  max-width: 560px;
+}
+
+/* Wrapper do card – à direita, centralizado verticalmente */
+.loginPanelWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 1rem 2rem;
+}
+
+/* Card branco (estilo do exemplo: bg-white, shadow, rounded, gap-3) */
+.loginCard {
+  background: #fff;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 10px;
+  padding: 1.25rem 1.25rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0px 0px 10px 15px rgba(0, 0, 0, 0.336);
+}
+
+.cardTitle {
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.cardDesc {
+  font-weight: 300;
+  color: #4b5563;
+  margin: 0;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.inputWrap {
+  width: 100%;
+}
+
+.inputWithIcon {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 3rem 0.875rem 1rem;
+  font-size: 1rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #1f2937;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #00A38D;
+  box-shadow: 0 0 0 2px rgba(0, 163, 141, 0.15);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.inputLabel {
+  display: block;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.eyeBtn:hover {
+  color: #374151;
+}
+
+.errorMsg {
+  font-size: 0.875rem;
+  color: #b91c1c;
+  background: #fef2f2;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin: 0;
+  text-align: left;
+}
+
+.recoveryWrap {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.recoveryLink {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  color: #1f2937;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+}
+
+.recoveryLink:hover {
+  text-decoration: underline;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #00A38D;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #008c7a;
+}
+
+.submitBtn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Footer – 5 colunas conforme layout da imagem */
+.footer {
+  flex-shrink: 0;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding: 1.25rem 2rem;
+}
+
+.footerGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  font-size: 0.75rem;
+  color: #374151;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.footerColTitle {
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.125rem;
+}
+
+.footerColTitleInline {
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footerColContent {
+  font-size: 0.75rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.footerLink {
+  font-size: 0.75rem;
+  color: #374151;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+  color: #00A38D;
+}
+
+.footerIcons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.footerIconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #f3f4f6;
+  color: #1877F2;
+  text-decoration: none;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.footerIconBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.footerIconBtn:nth-child(1) {
+  color: #1877F2;
+}
+
+.footerIconBtn:nth-child(1):hover {
+  background: #e7f0fe;
+}
+
+.footerIconBtn:nth-child(2):hover {
+  background: #fdf2f8;
+}
+
+.footerIconBtn:nth-child(3) {
+  color: #FF0000;
+}
+
+.footerIconBtn:nth-child(3):hover {
+  background: #fee2e2;
+}
+
+.footerCopyrightLine {
+  font-size: 0.6875rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .footerGrid {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .spsBanner {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  .spsLogo {
+    width: 220px;
+  }
+
+  .contentRow {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .systemLogo {
+    width: 280px;
+  }
+
+  .loginPanelWrapper {
+    padding: 1rem;
+  }
+
+  .loginCard {
+    min-height: auto;
+  }
+}

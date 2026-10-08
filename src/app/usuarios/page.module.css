@@ -1,0 +1,72 @@
+.grupoChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+/* Base compartilhada entre chips de grupo e status */
+.chipBase {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1.5px solid;
+  background: #fff;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.grupoChip {
+  composes: chipBase;
+}
+
+/* Contornos distintos por variante (atribuída por grupo via hash do código) */
+.grupoChip[data-variant='0'] {
+  border-color: #317042;
+  color: #1a4d2e;
+  background: #f0fdf4;
+}
+
+.grupoChip[data-variant='1'] {
+  border-color: #2563eb;
+  color: #1e40af;
+  background: #eff6ff;
+}
+
+.grupoChip[data-variant='2'] {
+  border-color: #7c3aed;
+  color: #5b21b6;
+  background: #f5f3ff;
+}
+
+.grupoChip[data-variant='3'] {
+  border-color: #c2410c;
+  color: #9a3412;
+  background: #fff7ed;
+}
+
+.grupoChip[data-variant='4'] {
+  border-color: #0d9488;
+  color: #0f766e;
+  background: #f0fdfa;
+}
+
+.grupoChip[data-variant='5'] {
+  border-color: #ca8a04;
+  color: #a16207;
+  background: #fefce8;
+}
+
+.grupoChip[data-variant='6'] {
+  border-color: #db2777;
+  color: #9d174d;
+  background: #fdf2f8;
+}
+
+.grupoChip[data-variant='7'] {
+  border-color: #4f46e5;
+  color: #3730a3;
+  background: #eef2ff;
+}

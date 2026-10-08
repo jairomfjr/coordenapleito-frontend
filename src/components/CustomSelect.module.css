@@ -1,0 +1,91 @@
+/* Select customizado: lista sempre abre para baixo */
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.wrapperDisabled .trigger {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text, #1e293b);
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: #9ca3af;
+}
+
+.wrapperOpen .trigger {
+  border-color: var(--accent, #317042);
+  outline: none;
+}
+
+.placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: #64748b;
+}
+
+.wrapperOpen .icon {
+  transform: rotate(180deg);
+}
+
+/* Lista posicionada sempre abaixo do trigger */
+.list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 100;
+  margin-top: 2px;
+}
+
+.option {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text, #1e293b);
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.option:hover {
+  background: #f1f5f9;
+}
+
+.optionSelected {
+  background: #ecfdf5;
+  color: var(--accent, #317042);
+  font-weight: 500;
+}
+
+.optionSelected:hover {
+  background: #d1fae5;
+}

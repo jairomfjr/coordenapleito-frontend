@@ -1,0 +1,244 @@
+/* SearchableSelect – padrão do projeto: borda verde ao abrir, busca no topo, lista com "Selecione..." em destaque.
+   Ver .cursor/rules/searchable-select-padrao.mdc. Não alterar o padrão visual sem necessidade. */
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Evita que outro campo do modal (ex.: botões) fique por cima do dropdown aberto */
+.wrapperOpen {
+  z-index: 1200;
+}
+
+.wrapperDisabled .trigger {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text, #1e293b);
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: #9ca3af;
+}
+
+.wrapperOpen .trigger {
+  border-color: var(--accent, #317042);
+  border-width: 1.5px;
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #317042);
+}
+
+.placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: #64748b;
+}
+
+.wrapperOpen .icon {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  background: #ffffff;
+  border: 1px solid var(--accent, #317042);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  /* Painel inteiro limitado à viewport: a rolagem fica na lista abaixo */
+  max-height: min(75vh, 420px);
+  overflow: hidden;
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: #64748b;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  padding: 0.35rem 0;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text, #1e293b);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+.list {
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: min(220px, 50vh);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+/* Barra de rolagem mais visível em listas longas (ex.: municípios no modal) */
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.option {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text, #1e293b);
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.option:hover {
+  background: #f0fdf4;
+}
+
+.optionSelected {
+  background: #ecfdf5;
+  color: var(--accent, #317042);
+  font-weight: 500;
+}
+
+.optionSelected:hover {
+  background: #d1fae5;
+}
+
+/* Primeira opção (placeholder "Selecione...") com mesmo destaque quando selecionada */
+.option:first-child.optionSelected {
+  background: #ecfdf5;
+  color: var(--text-muted, #64748b);
+  font-weight: 400;
+}
+
+.option:first-child.optionSelected:hover {
+  background: #d1fae5;
+}
+
+.optionEmpty {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+  text-align: center;
+  cursor: default;
+}
+
+/* Variante compacta (ex.: barra de listagem) */
+.compact.wrapper {
+  max-width: 200px;
+  min-width: 140px;
+}
+
+.compact .trigger {
+  padding: 0.35rem 1.75rem 0.35rem 0.5rem;
+  font-size: 0.8125rem;
+  min-height: 32px;
+}
+
+.compact .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.compact .dropdown {
+  margin-top: 1px;
+  border-radius: 6px;
+}
+
+.compact .searchWrap {
+  padding: 0.35rem 0.5rem;
+}
+
+.compact .searchInput {
+  padding: 0.25rem 0;
+  font-size: 0.8125rem;
+}
+
+.compact .list {
+  max-height: min(180px, 45vh);
+  padding: 0.15rem 0;
+}
+
+.compact .option {
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.compact .optionEmpty {
+  padding: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+/* Variante barra de listagem: trigger com mesma borda do campo de busca (#d0d0d0) */
+.inBar .trigger {
+  border-color: #d0d0d0;
+  border-radius: 6px;
+}
+
+.inBar .trigger:hover:not(:disabled) {
+  border-color: #9ca3af;
+}
+
+.inBar.wrapperOpen .trigger {
+  border-color: var(--accent, #317042);
+  border-width: 1px;
+  box-shadow: 0 0 0 1px var(--accent, #317042);
+}

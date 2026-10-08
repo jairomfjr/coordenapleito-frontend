@@ -1,0 +1,117 @@
+/* Nível 0: Ano - destaque com cor primária do sistema */
+.accordion {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.accordion:last-child {
+  margin-bottom: 0;
+}
+
+.accordionNested {
+  margin-bottom: 0.5rem;
+  box-shadow: none;
+  border: none;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.accordionNested:last-child {
+  margin-bottom: 0;
+}
+
+/* Terceiro nível (ex.: mês dentro de equipamento): leve recuo para leitura da hierarquia */
+.accordionNested[data-accordion-level='2'] {
+  margin-left: 0.35rem;
+}
+
+/* Trigger nível 0 - Ano */
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.25rem;
+  background: linear-gradient(180deg, #317042 0%, #2d6340 100%);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.trigger:hover {
+  background: linear-gradient(180deg, #3d7d4e 0%, #317042 100%);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid #317042;
+  outline-offset: 2px;
+}
+
+.icon {
+  flex-shrink: 0;
+  opacity: 0.95;
+  transition: transform 0.2s ease;
+}
+
+.title {
+  flex: 1;
+  letter-spacing: 0.01em;
+}
+
+/* Conteúdo nível 0 */
+.content {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  animation: accordionOpen 0.2s ease-out;
+}
+
+@keyframes accordionOpen {
+  from {
+    opacity: 0.97;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Nested: trigger mês */
+.accordionNested .trigger {
+  background: #fff;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.accordionNested .trigger:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.accordionNested .icon {
+  color: #317042;
+  opacity: 1;
+}
+
+/* Nested: conteúdo com tabela */
+.accordionNested .content {
+  padding: 0.75rem 1rem 1rem;
+  background: #fafbfc;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  margin-top: 2px;
+  margin-left: 0.5rem;
+  border-left: 3px solid #317042;
+}

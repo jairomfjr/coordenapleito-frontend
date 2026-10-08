@@ -1,0 +1,53 @@
+# Exemplo: Deployment do frontend Coordenapleito no Kubernetes
+# Aplicar: kubectl apply -f coordenapleito-frontend-deployment.example.yaml -n coordenapleito
+#
+# Pré-requisito: Service coordenapleito-api com pods Ready (API sobe após Flyway).
+# Se a API estiver em CrashLoop, o proxy retorna 502/ECONNREFUSED até ela subir.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coordenapleito-frontend
+  namespace: coordenapleito
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coordenapleito-frontend
+  template:
+    metadata:
+      labels:
+        app: coordenapleito-frontend
+    spec:
+      containers:
+        - name: coordenapleito-frontend
+          image: hub.sps.ce.gov.br/coordenapleito/coordenapleito-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            # Namespace para DNS interno (fallback quando Service env não existir)
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            # Fallback: proxy server-side via Ingress público se o Service interno falhar
+            - name: COORDENAPLEITO_PUBLIC_ORIGIN
+              value: "https://coordenapleito.sps.ce.gov.br"
+            # Opcional: só se o Service da API tiver outro nome ou porta
+            # - name: BACKEND_URL
+            #   value: "http://coordenapleito-api:8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coordenapleito-frontend
+  namespace: coordenapleito
+spec:
+  selector:
+    app: coordenapleito-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000

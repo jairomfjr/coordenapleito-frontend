@@ -1,0 +1,123 @@
+/* Acima de modais aninhados (transform no pai quebra position:fixed sem portal) */
+.overlay {
+  z-index: 10000;
+}
+
+.content {
+  max-width: min(520px, 96vw);
+  width: 100%;
+}
+
+/* Largura limitada para altura máxima, garantindo sempre 4×3 (evita caixa 16×9 quando width:100% + max-height) */
+.videoWrap {
+  position: relative;
+  width: min(100%, calc(min(60vh, 420px) * 4 / 3));
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-left: auto;
+  margin-right: auto;
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Centralizado: mesmo recorte que getCenterFixedAspectCropRect(4×3) no canvas */
+  object-position: center center;
+}
+
+/* Gabarito: moldura interna + elipse para posicionar o rosto (retrato tipo documento) */
+.guideOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Valores espelhados em FACE_GUIDE_LAYOUT (videoFrameCrop.ts) para o recorte circular */
+.faceGuide {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  width: 58%;
+  aspect-ratio: 1;
+  max-width: min(58%, 200px);
+  border: 2px dashed rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.guideCorners {
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.guideLabel {
+  position: absolute;
+  bottom: 0.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 1.5rem);
+  margin: 0;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: #fff;
+  text-shadow:
+    0 0 8px rgba(0, 0, 0, 0.85),
+    0 1px 2px rgba(0, 0, 0, 0.9);
+  background: rgba(15, 23, 42, 0.45);
+  border-radius: 8px;
+}
+
+.hiddenCanvas {
+  display: none;
+}
+
+.message {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.45;
+}
+
+.error {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: #b91c1c;
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.actionsPrimary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.spinner {
+  font-size: 0.8125rem;
+  color: #64748b;
+}

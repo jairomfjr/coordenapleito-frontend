@@ -1,0 +1,8 @@
+# Evita que env de desenvolvimento local entre no build de homolog/produção na VPS
+.env.local
+.env.development
+.env.development.local
+.env*.local
+node_modules
+.next
+.git

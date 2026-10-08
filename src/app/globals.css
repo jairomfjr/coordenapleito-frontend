@@ -1,0 +1,771 @@
+/* Kanit – fonte local (sem dependência do Google Fonts) */
+@import '@fontsource/kanit/latin-400.css';
+@import '@fontsource/kanit/latin-500.css';
+@import '@fontsource/kanit/latin-600.css';
+@import '@fontsource/kanit/latin-700.css';
+
+:root {
+  /* Tema claro – alinhado à imagem (verde SPS, fundos claros) */
+  --bg: #f5f6f8;
+  --bg-elevated: #ffffff;
+  --sidebar: #2e6b3e;
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-active: #b4ddb5;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --accent: #317042;
+  --accent-hover: #2d6340;
+  --border: #d0d0d0;
+  --border-subtle: #e5e7eb;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --transition: 0.15s ease;
+  --bg-card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Kanit', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* Padrão global: campos textuais em maiúsculo (opt-out: pesquisa, data-no-uppercase ou .modalInputNormalCase). */
+input[type='text']:not([data-no-uppercase]):not([data-search-input]):not(.modalInputNormalCase),
+textarea:not([data-no-uppercase]):not(.modalInputNormalCase) {
+  text-transform: uppercase;
+}
+
+[data-search-area] input[type='text'],
+[data-search-area] input[type='search'],
+input[type='search']:not([data-no-uppercase]),
+input[type='password'],
+input[autocomplete='current-password'],
+input[autocomplete='new-password'] {
+  text-transform: none;
+}
+
+/* Selects padronizados: fundo branco, borda cinza, texto escuro (conforme imagem) */
+/* overflow: visible para o combo abrir para baixo e não ser cortado pelo container */
+select {
+  font-family: inherit;
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 1rem !important;
+  color: #1e293b !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+select:hover {
+  border-color: #9ca3af !important;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+}
+
+select option {
+  background: #ffffff;
+  color: #1e293b;
+}
+
+/* Utilitários para conteúdo da área principal */
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.sidebar-link:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--text) !important;
+}
+
+/* Modais de cadastro – abertura como na imagem: overlay escurecido/desfocado, modal centralizado e elevado */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0.5rem;
+  animation: modalOverlayIn 0.25s ease-out;
+}
+
+@keyframes modalOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 580px;
+  max-height: calc(100vh - 3rem);
+  overflow: visible;
+  animation: modalContentIn 0.28s ease-out;
+  position: relative;
+}
+
+.modalGlobalCloseBtn {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.9rem;
+  appearance: none;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  color: #0f172a;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.14);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  z-index: 4;
+}
+
+.modalGlobalCloseBtn:hover {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+}
+
+.modalGlobalCloseBtn:active {
+  transform: translateY(0);
+}
+
+.modalGlobalCloseBtn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(49, 112, 66, 0.25),
+    0 10px 24px rgba(15, 23, 42, 0.18);
+}
+
+.modalContent.modalContent--wide {
+  max-width: 760px;
+  /* Rola o conteúdo do modal (barra vertical) para campos no rodapé — ex. combo de município — subirem na tela */
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.modalContent.modalContent--wide::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modalContent.modalContent--wide::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.modalContent.modalContent--wide::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+.modalContent.modalContent--wide::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Modal CMIC – mais largo e com corpo rolável */
+.modalContent.modalContent--wideCmic {
+  max-width: 960px;
+  width: 95%;
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Variante extra larga e alta (ex.: Casa Cidadão – cadastro com busca de cidadão e serviço) */
+.modalContent.modalContent--wideCmic.modalContent--wideCmicXl {
+  max-width: min(1280px, 96vw);
+  width: 96%;
+  max-height: calc(100vh - 1rem);
+  min-height: min(85vh, 720px);
+}
+
+.modalContent.modalContent--wideCmic.modalContent--wideCmicXl [data-casa-cidadao-modal-body],
+.modalContent.modalContent--wideCmic.modalContent--wideCmicXl [data-caminhao-cidadao-modal-body] {
+  flex: 1;
+  min-height: min(62vh, 520px);
+  padding: 2rem 2.5rem 2.25rem;
+}
+
+/* Modal ainda mais largo (ex.: cadastro de usuário) com corpo rolável – ocupa quase toda a altura da tela */
+.modalContent.modalContent--extraWide {
+  max-width: 1280px;
+  width: 96%;
+  max-height: calc(100vh - 1rem);
+  min-height: min(80vh, 600px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 2rem;
+}
+
+/* Aba Equipamentos: modal ocupa a tela; área de conteúdo no máximo para os dados ficarem visíveis */
+.modalContent.modalContent--wideEquipamentos {
+  max-width: min(1680px, 98vw);
+  width: 98%;
+  max-height: 100vh;
+}
+
+.modalContent.modalContent--wideEquipamentos .modalFormBody,
+.modalContent.modalContent--extraWide.modalContent--wideEquipamentos .modalFormBody {
+  max-height: calc(100vh - 1.5rem);
+}
+
+/* Modal com dropdown "Adicionar equipamento" aberto: mais espaço para a lista */
+.modalContent.modalContent--equipamentoDropdownOpen {
+  max-height: 100vh;
+}
+
+.modalContent.modalContent--equipamentoDropdownOpen .modalFormBody {
+  max-height: calc(100vh - 1rem);
+}
+
+.modalContent.modalContent--extraWide form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.modalContent.modalContent--extraWide .modalFormBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem 1.75rem;
+  align-content: start;
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+  max-height: calc(100vh - 4.5rem);
+  padding-right: 0.35rem;
+  margin: 0 -0.35rem 0 0;
+}
+
+.modalContent.modalContent--extraWide .modalFormBody .modalFormRow--full {
+  grid-column: 1 / -1;
+}
+
+.modalContent.modalContent--extraWide form .modalActions {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Abas no modal (ex.: usuário) */
+.modalTabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin: 0 -0.5rem 1rem 0;
+  flex-shrink: 0;
+}
+
+.modalTab {
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted, #64748b);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.modalTab:hover {
+  color: var(--text, #334155);
+}
+
+.modalTabActive {
+  color: var(--accent, #317042);
+  border-bottom-color: var(--accent, #317042);
+}
+
+.modalTabPanel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem 1.75rem;
+  align-content: start;
+  min-height: 0;
+}
+
+.modalTabPanel .modalFormRow--full {
+  grid-column: 1 / -1;
+}
+
+.modalTabEmpty {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+}
+
+.modalContent.modalContent--extraWide .modalFormBody .modalTabPanel {
+  grid-column: 1 / -1;
+}
+
+/* Grupos em grid (2–3 colunas) no modal de usuário */
+.modalGruposGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.modalGruposGrid > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: var(--bg-subtle, #f8fafc);
+  border: 1px solid var(--border, #e2e8f0);
+}
+
+@keyframes modalContentIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalContent h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.modalContent .modalSubtitle {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.modalContent form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  align-content: start;
+  overflow: visible;
+}
+
+.modalContent form .modalFormRow {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: visible;
+}
+
+.modalContent form .modalFormRow--full {
+  grid-column: 1 / -1;
+}
+
+.modalContent form .modalActions {
+  grid-column: 1 / -1;
+}
+
+.modalContent label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modalContent [data-permissao-tree] label {
+  display: flex;
+  margin-bottom: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.modalContent input[type="text"],
+.modalContent input[type="email"],
+.modalContent input[type="number"],
+.modalContent input[type="date"],
+.modalContent input[type="datetime-local"],
+.modalContent textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.875rem;
+  transition: border-color var(--transition);
+}
+
+.modalContent input[type="text"],
+.modalContent textarea {
+  text-transform: uppercase;
+}
+
+/* Mensagens e textos longos: manter caixa natural (fora do padrão SIGLA/descrição em caps) */
+.modalContent input.modalInputNormalCase,
+.modalContent textarea.modalInputNormalCase {
+  text-transform: none;
+}
+
+.modalContent input[type="email"] {
+  text-transform: lowercase;
+}
+
+.modalContent input:focus,
+.modalContent textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.modalContent input::placeholder,
+.modalContent textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Select dentro do modal: fundo branco e borda cinza (igual à imagem) */
+.modalContent select {
+  width: 100%;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 1rem !important;
+  color: var(--text) !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.modalContent select:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+}
+
+.modalContent select option {
+  background: #ffffff;
+  color: var(--text);
+}
+
+.modalContent .modalFormRow {
+  margin-bottom: 0;
+}
+
+.modalContent form .modalActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.modalContent .modalActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.modalContent .modalActions.modalActions--equalButtons .modalBtnSecondary,
+.modalContent .modalActions.modalActions--equalButtons .modalBtnPrimary {
+  min-width: 7.5rem;
+}
+
+.modalContent .modalBtnSecondary,
+.modalBtnSecondary {
+  padding: 0.625rem 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  color: #475569;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modalContent .modalBtnSecondary:hover,
+.modalBtnSecondary:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.modalContent .modalBtnPrimary,
+.modalBtnPrimary {
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(180deg, #317042 0%, #2d6340 100%);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(49, 112, 66, 0.35);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.modalContent .modalBtnPrimary:hover:not(:disabled),
+.modalBtnPrimary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #3d7d4e 0%, #317042 100%);
+  box-shadow: 0 4px 12px rgba(49, 112, 66, 0.4);
+}
+
+.modalContent .modalBtnPrimary:active:not(:disabled),
+.modalBtnPrimary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.modalContent .modalBtnPrimary:disabled,
+.modalBtnPrimary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.modalContent .modalBtnDanger,
+.modalBtnDanger {
+  padding: 0.625rem 1.5rem;
+  background: #fff;
+  border: 1px solid #ef4444;
+  border-radius: 10px;
+  color: #b91c1c;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modalContent .modalBtnDanger:hover:not(:disabled),
+.modalBtnDanger:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+.modalContent .modalBtnDanger:focus-visible,
+.modalBtnDanger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.modalContent .modalBtnDanger:disabled,
+.modalBtnDanger:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.modalPermissoesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.modalCheckboxLabel {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+}
+
+.modalCheckboxLabel input[type="checkbox"] {
+  width: auto;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+}
+
+.modalPermissaoDesc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.modalPermissoesEmpty {
+  padding: 0 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Switch (deslisa) para Ativo em modais */
+.toggleRow {
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
+  flex-direction: row !important;
+}
+
+.toggleLabel {
+  margin-bottom: 0 !important;
+  flex-shrink: 0;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggleSwitch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.toggleSwitch__track {
+  display: block;
+  width: 2.75rem;
+  height: 1.5rem;
+  background: #d1d5db;
+  border-radius: 9999px;
+  transition: background var(--transition);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.toggleSwitch__track::after {
+  content: '';
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition);
+}
+
+.toggleSwitch__input:checked + .toggleSwitch__track {
+  background: var(--accent);
+}
+
+.toggleSwitch__input:checked + .toggleSwitch__track::after {
+  transform: translateX(1.25rem);
+}
+
+.toggleSwitch__input:focus-visible + .toggleSwitch__track {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

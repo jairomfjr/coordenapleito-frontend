@@ -1,0 +1,21 @@
+services:
+  coordenapleito-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-production}
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+        NEXT_IMAGE_UNOPTIMIZED: ${NEXT_IMAGE_UNOPTIMIZED:-}
+    image: hub.sps.ce.gov.br/coordenapleito/coordenapleito-frontend
+    container_name: coordenapleito-frontend
+    network_mode: net_sps
+# Padrão: .env.production. Desenvolvimento: docker compose --env-file .env.development up
+# Build com vars de produção: docker compose --env-file .env.production build 
+    env_file:
+      - .env.production
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+    ports:
+      - ':3000'
