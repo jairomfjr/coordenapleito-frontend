@@ -237,6 +237,31 @@ export interface CoordenadorFilter {
   size?: number;
 }
 
+export interface VinculoItemModel {
+  zona: number;
+  nome: string;
+  capacidade: number;
+  vinculados: number;
+  vagasDisponiveis: number;
+  percentualOcupacao: number;
+}
+
+export interface CoordenadorVinculoResumoModel {
+  capacidadeTotal: number;
+  vinculados: number;
+  vagasDisponiveis: number;
+  locaisEsgotados: number;
+  locaisComVaga: number;
+  totalLocais: number;
+  totalZonas: number;
+  percentualOcupacao: number;
+  zonaMaisVinculos?: VinculoItemModel | null;
+  zonaMenosVinculos?: VinculoItemModel | null;
+  porZona: VinculoItemModel[];
+  locaisDestaque: VinculoItemModel[];
+  locaisComMaisVagas: VinculoItemModel[];
+}
+
 export interface LocalVotacaoPublicoModel {
   codigo: string;
   zona: number;

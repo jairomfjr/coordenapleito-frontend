@@ -5,16 +5,18 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/contexts/AuthContext';
 import { coordenadoresService } from '@/services/coordenadores';
-import { locaisVotacaoService } from '@/services/locaisVotacao';
+import { coordenadorPublicoService } from '@/services/coordenadorPublico';
 import { getApiErrorMessage } from '@/lib/apiError';
 import { formatCpf, formatTelefone, onlyDigits } from '@/lib/masks';
+import { rotuloLocalVotacao } from '@/lib/rotuloLocalVotacao';
 import type {
   CoordenadorInput,
   CoordenadorModelBasico,
-  LocalVotacaoModelBasico,
+  LocalVotacaoPublicoModel,
   PageResponse,
 } from '@/types/api';
 import {
+  ListagemBanner,
   ListagemBar,
   ListagemPageWrapper,
   ListagemPagination,
@@ -25,20 +27,22 @@ import type { Coluna } from '@/components/listagem';
 import { ConfirmModal } from '@/components/ConfirmModal';
 import { CoordenadorFormModal, type CoordenadorFormState } from './CoordenadorFormModal';
 import listagemStyles from '@/components/listagem/listagem.module.css';
-import pageStyles from '@/app/locais-votacao/page.module.css';
-
-function rotuloLocal(item?: LocalVotacaoModelBasico) {
-  if (!item) return '—';
-  return `Zona ${item.zona} — ${item.localVotacao}`;
-}
 
 const COLUNAS: Coluna<CoordenadorModelBasico>[] = [
   { key: 'nome', label: 'Nome' },
   { key: 'cpf', label: 'CPF', render: (item) => formatCpf(item.cpf ?? '') },
   { key: 'telefone', label: 'Telefone', render: (item) => formatTelefone(item.telefone ?? '') },
   { key: 'email', label: 'E-mail' },
-  { key: 'localTrabalho', label: 'Local de trabalho', render: (item) => rotuloLocal(item.localTrabalho) },
-  { key: 'localVotacao', label: 'Local de votação', render: (item) => rotuloLocal(item.localVotacao) },
+  {
+    key: 'localTrabalho',
+    label: 'Local de trabalho',
+    render: (item) => (item.localTrabalho ? rotuloLocalVotacao(item.localTrabalho) : '—'),
+  },
+  {
+    key: 'localVotacao',
+    label: 'Local de votação',
+    render: (item) => (item.localVotacao ? rotuloLocalVotacao(item.localVotacao) : '—'),
+  },
 ];
 
 const formInitial: CoordenadorFormState = {
@@ -65,7 +69,8 @@ export default function CoordenadoresPage() {
   const { isAuthenticated, loading: authLoading } = useAuth();
   const router = useRouter();
   const [data, setData] = useState<PageResponse<CoordenadorModelBasico> | null>(null);
-  const [locais, setLocais] = useState<LocalVotacaoModelBasico[]>([]);
+  const [locais, setLocais] = useState<LocalVotacaoPublicoModel[]>([]);
+  const [localTrabalhoOriginalCodigo, setLocalTrabalhoOriginalCodigo] = useState('');
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -97,9 +102,9 @@ export default function CoordenadoresPage() {
 
   useEffect(() => {
     if (!modalOpen) return;
-    locaisVotacaoService
-      .listar({ page: 0, size: 500 })
-      .then((res) => setLocais(res.data.content ?? []))
+    coordenadorPublicoService
+      .listarLocais()
+      .then((res) => setLocais(res.data))
       .catch((err) => toast.error(getApiErrorMessage(err)));
   }, [modalOpen]);
 
@@ -107,6 +112,7 @@ export default function CoordenadoresPage() {
     if (!modalOpen) return;
     if (!editCodigo) {
       setForm(formInitial);
+      setLocalTrabalhoOriginalCodigo('');
       return;
     }
     let cancelled = false;
@@ -123,6 +129,7 @@ export default function CoordenadoresPage() {
           localTrabalhoCodigo: item.localTrabalho?.codigo ?? '',
           localVotacaoCodigo: item.localVotacao?.codigo ?? '',
         });
+        setLocalTrabalhoOriginalCodigo(item.localTrabalho?.codigo ?? '');
       })
       .catch((err) => toast.error(getApiErrorMessage(err)));
     return () => {
@@ -172,15 +179,10 @@ export default function CoordenadoresPage() {
   return (
     <>
       <ListagemPageWrapper>
-        <section className={pageStyles.hero} aria-label="Coordenadores">
-          <img className={pageStyles.heroImg} src="/backgroundequipamentos.png" alt="" />
-          <div className={pageStyles.heroOverlay} />
-          <div className={pageStyles.heroContent}>
-            <p className={pageStyles.kicker}>Pleito eleitoral</p>
-            <h1>Coordenadores</h1>
-            <p>Cadastre os coordenadores e vincule o local de trabalho e o local de votação.</p>
-          </div>
-        </section>
+        <ListagemBanner
+          titulo="Coordenadores"
+          descricao="Cadastre os coordenadores e vincule o local de trabalho e o local de votação."
+        />
         <ListagemBar
           searchPlaceholder="Busque por nome, CPF, e-mail ou local"
           searchValue={search}
@@ -242,6 +244,7 @@ export default function CoordenadoresPage() {
             form={form}
             formLoading={formLoading}
             locais={locais}
+            localTrabalhoOriginalCodigo={localTrabalhoOriginalCodigo}
             onChange={setForm}
             onSubmit={handleSubmit}
             onCancel={() => !formLoading && setModalOpen(false)}

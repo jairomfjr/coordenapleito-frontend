@@ -11,11 +11,12 @@ services:
     image: hub.sps.ce.gov.br/coordenapleito/coordenapleito-frontend
     container_name: coordenapleito-frontend
     network_mode: net_sps
-# Padrão: .env.production. Desenvolvimento: docker compose --env-file .env.development up
-# Build com vars de produção: docker compose --env-file .env.production build 
     env_file:
       - .env.production
     environment:
+      NODE_ENV: production
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-}
+      BACKEND_URL: ${BACKEND_URL:-http://coordenapleito-api:8083}
     ports:
-      - ':3000'
+      - "3005:3000"
+    restart: always

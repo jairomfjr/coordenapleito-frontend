@@ -15,7 +15,7 @@ import type {
   PermissaoModelBasico,
 } from '@/types/api';
 import {
-  ListagemTitulo,
+  ListagemBanner,
   ListagemBar,
   ListagemTable,
   ListagemPagination,
@@ -233,7 +233,10 @@ export default function GruposPage() {
   return (
     <>
     <ListagemPageWrapper>
-      <ListagemTitulo recurso="Grupos" />
+      <ListagemBanner
+        titulo="Grupos"
+        descricao="Cadastre os grupos e vincule as permissões de cada perfil de acesso."
+      />
       <ListagemBar
         searchPlaceholder="Busque pelo nome do grupo"
         searchValue={busca}

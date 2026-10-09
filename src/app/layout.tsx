@@ -8,9 +8,9 @@ import PublicLayout from './components/PublicLayout';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Coordenapleito',
+  title: 'Coordenação Pleito',
   description: 'Coordenapleito — usuários, grupos e permissões',
-  // favicon.ico fica só em src/app/ — o App Router injeta o link automaticamente.
+  // favicon.ico e icon.svg ficam só em src/app/ — o App Router injeta o link.
   // Não duplicar em public/ (conflito no path /favicon.ico).
 };
 

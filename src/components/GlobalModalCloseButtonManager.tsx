@@ -46,17 +46,7 @@ function tryCloseModal(modal: HTMLElement, sourceButton: HTMLButtonElement) {
   const target = ordenados[0];
   if (target) {
     target.click();
-    return;
   }
-
-  const overlay = modal.closest('.modalOverlay') as HTMLElement | null;
-  if (overlay) {
-    overlay.click();
-    return;
-  }
-
-  // Fallback: tenta fechar por ESC (quando houver handler global)
-  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
 }
 
 function ensureCloseButton(modal: HTMLElement) {

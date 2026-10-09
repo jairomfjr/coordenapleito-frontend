@@ -6,13 +6,14 @@
  * com destaque verde claro. Ver .cursor/rules/searchable-select-padrao.mdc.
  */
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, type MouseEvent as ReactMouseEvent } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
 import styles from './SearchableSelect.module.css';
 
 export interface SearchableSelectOption {
   value: string | number;
   label: string;
+  disabled?: boolean;
 }
 
 interface SearchableSelectProps {
@@ -120,7 +121,7 @@ export function SearchableSelect({
 
   useEffect(() => {
     if (!open) return;
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: globalThis.MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
@@ -129,7 +130,14 @@ export function SearchableSelect({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open]);
 
-  const handleSelect = (optValue: string | number | undefined) => {
+  const handleSelect = (
+    optValue: string | number | undefined,
+    e: ReactMouseEvent,
+    disabled?: boolean
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (disabled) return;
     onChange(optValue);
     setOpen(false);
   };
@@ -189,7 +197,7 @@ export function SearchableSelect({
                 role="option"
                 aria-selected={value === undefined || value === ''}
                 className={`${styles.option} ${(value === undefined || value === '') ? styles.optionSelected : ''}`}
-                onClick={() => handleSelect(undefined)}
+                onMouseDown={(e) => handleSelect(undefined, e)}
               >
                 {placeholder}
               </li>
@@ -210,8 +218,9 @@ export function SearchableSelect({
                   id={`opt-${opt.value}`}
                   role="option"
                   aria-selected={String(opt.value) === String(value)}
-                  className={`${styles.option} ${String(opt.value) === String(value) ? styles.optionSelected : ''}`}
-                  onClick={() => handleSelect(opt.value)}
+                  aria-disabled={opt.disabled || undefined}
+                  className={`${styles.option} ${String(opt.value) === String(value) ? styles.optionSelected : ''} ${opt.disabled ? styles.optionDisabled : ''}`}
+                  onMouseDown={(e) => handleSelect(opt.value, e, opt.disabled)}
                 >
                   {opt.label}
                 </li>

@@ -156,12 +156,11 @@ export function CameraCaptureModal({
   const modal = (
     <div
       className={`modalOverlay ${styles.overlay}`}
-      onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="camera-capture-title"
     >
-      <div className={`modalContent ${styles.content}`} onClick={(e) => e.stopPropagation()}>
+      <div className={`modalContent ${styles.content}`}>
         <h2 id="camera-capture-title" style={{ margin: '0 0 0.75rem', fontSize: '1.125rem', fontWeight: 600 }}>
           {title}
         </h2>

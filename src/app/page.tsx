@@ -3,10 +3,15 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import { ListagemBanner, ListagemPageWrapper } from '@/components/listagem';
+import { usuarioPodeVerGraficosCoordenadores } from '@/lib/permissions';
+import { CoordenadorVinculosDashboard } from './home/CoordenadorVinculosDashboard';
+import styles from './home/home.module.css';
 
 export default function HomePage() {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, user } = useAuth();
   const router = useRouter();
+  const podeVerGraficos = usuarioPodeVerGraficosCoordenadores(user);
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -19,11 +24,20 @@ export default function HomePage() {
   }
 
   return (
-    <main style={{ padding: '1.5rem 1.75rem' }}>
-      <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 600 }}>Coordenapleito</h1>
-      <p style={{ marginTop: '0.75rem', maxWidth: '40rem', lineHeight: 1.5 }}>
-        Use o menu para gerenciar usuários, grupos, permissões e locais de votação.
-      </p>
-    </main>
+    <ListagemPageWrapper>
+      <ListagemBanner
+        titulo="Início"
+        descricao="Acompanhe, em tempo real, os coordenadores vinculados a cada local de trabalho."
+      />
+      {podeVerGraficos ? (
+        <CoordenadorVinculosDashboard />
+      ) : (
+        <p className={styles.empty}>
+          Use o menu para gerenciar usuários, grupos, permissões, coordenadores e locais de votação.
+          Os gráficos desta página podem ser habilitados na árvore de permissões do grupo
+          (Página inicial → Gráficos de coordenadores).
+        </p>
+      )}
+    </ListagemPageWrapper>
   );
 }

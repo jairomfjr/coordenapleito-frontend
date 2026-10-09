@@ -8,7 +8,7 @@ import { permissoesService } from '@/services/permissoes';
 import { getApiErrorMessage } from '@/lib/apiError';
 import type { PermissaoModelBasico, PermissaoInput } from '@/types/api';
 import {
-  ListagemTitulo,
+  ListagemBanner,
   ListagemBar,
   ListagemTable,
   ListagemPagination,
@@ -130,7 +130,10 @@ export default function PermissoesPage() {
   return (
     <>
     <ListagemPageWrapper>
-      <ListagemTitulo recurso="Permissões" />
+      <ListagemBanner
+        titulo="Permissões"
+        descricao="Cadastre e organize as permissões funcionais do sistema."
+      />
       <ListagemBar
         searchPlaceholder="Busque pelo nome ou descrição"
         searchValue={busca}

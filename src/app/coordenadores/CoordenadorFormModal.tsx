@@ -5,7 +5,8 @@ import { UserCheck } from 'lucide-react';
 import { ListagemModalActions } from '@/components/listagem';
 import { SearchableSelect } from '@/components/SearchableSelect';
 import { formatCpf, formatTelefone } from '@/lib/masks';
-import type { LocalVotacaoModelBasico } from '@/types/api';
+import { rotuloLocalTrabalho, rotuloLocalVotacao } from '@/lib/rotuloLocalVotacao';
+import type { LocalVotacaoPublicoModel } from '@/types/api';
 import styles from '@/app/locais-votacao/LocalVotacaoFormModal.module.css';
 import wideStyles from './CoordenadorFormModal.module.css';
 
@@ -22,14 +23,11 @@ interface Props {
   editCodigo: string | null;
   form: CoordenadorFormState;
   formLoading: boolean;
-  locais: LocalVotacaoModelBasico[];
+  locais: LocalVotacaoPublicoModel[];
+  localTrabalhoOriginalCodigo?: string;
   onChange: (next: CoordenadorFormState) => void;
   onSubmit: (e: FormEvent) => void;
   onCancel: () => void;
-}
-
-function rotuloLocal(item: LocalVotacaoModelBasico) {
-  return `Zona ${item.zona} — ${item.localVotacao}`;
 }
 
 export function CoordenadorFormModal({
@@ -37,14 +35,20 @@ export function CoordenadorFormModal({
   form,
   formLoading,
   locais,
+  localTrabalhoOriginalCodigo = '',
   onChange,
   onSubmit,
   onCancel,
 }: Props) {
   const editando = Boolean(editCodigo);
-  const opcoesLocais = locais.map((item) => ({
+  const opcoesTrabalho = locais.map((item) => ({
     value: item.codigo,
-    label: rotuloLocal(item),
+    label: rotuloLocalTrabalho(item),
+    disabled: Boolean(item.esgotado && item.codigo !== localTrabalhoOriginalCodigo),
+  }));
+  const opcoesVotacao = locais.map((item) => ({
+    value: item.codigo,
+    label: rotuloLocalVotacao(item),
   }));
 
   return (
@@ -139,23 +143,26 @@ export function CoordenadorFormModal({
 
               <section className={styles.section}>
                 <h4 className={styles.sectionTitle}>Locais</h4>
-                <label className={styles.field} htmlFor="coord-local-trabalho">
+                <div className={styles.field}>
                   <span className={styles.label}>Local de trabalho *</span>
                   <SearchableSelect
                     id="coord-local-trabalho"
                     required
                     value={form.localTrabalhoCodigo || undefined}
-                    onChange={(value) =>
-                      onChange({ ...form, localTrabalhoCodigo: value == null ? '' : String(value) })
-                    }
-                    options={opcoesLocais}
+                    onChange={(value) => {
+                      const codigo = value == null ? '' : String(value);
+                      const item = locais.find((local) => local.codigo === codigo);
+                      if (item?.esgotado && codigo !== localTrabalhoOriginalCodigo) return;
+                      onChange({ ...form, localTrabalhoCodigo: codigo });
+                    }}
+                    options={opcoesTrabalho}
                     placeholder="Selecione o local de trabalho"
                     searchPlaceholder="Pesquisar por zona ou nome do local..."
                     aria-label="Local de trabalho"
                     maxListHeight={280}
                   />
-                </label>
-                <label className={styles.field} htmlFor="coord-local-votacao">
+                </div>
+                <div className={styles.field}>
                   <span className={styles.label}>Local de votação *</span>
                   <SearchableSelect
                     id="coord-local-votacao"
@@ -164,13 +171,13 @@ export function CoordenadorFormModal({
                     onChange={(value) =>
                       onChange({ ...form, localVotacaoCodigo: value == null ? '' : String(value) })
                     }
-                    options={opcoesLocais}
+                    options={opcoesVotacao}
                     placeholder="Selecione o local de votação"
                     searchPlaceholder="Pesquisar por zona ou nome do local..."
                     aria-label="Local de votação"
                     maxListHeight={280}
                   />
-                </label>
+                </div>
               </section>
             </div>
 

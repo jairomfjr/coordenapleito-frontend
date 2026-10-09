@@ -8,6 +8,7 @@ import { locaisVotacaoService } from '@/services/locaisVotacao';
 import { getApiErrorMessage } from '@/lib/apiError';
 import type { LocalVotacaoInput, LocalVotacaoModelBasico, PageResponse } from '@/types/api';
 import {
+  ListagemBanner,
   ListagemBar,
   ListagemPageWrapper,
   ListagemPagination,
@@ -157,15 +158,10 @@ export default function LocaisVotacaoPage() {
   return (
     <>
       <ListagemPageWrapper>
-        <section className={pageStyles.hero} aria-label="Locais de votação">
-          <img className={pageStyles.heroImg} src="/backgroundequipamentos.png" alt="" />
-          <div className={pageStyles.heroOverlay} />
-          <div className={pageStyles.heroContent}>
-            <p className={pageStyles.kicker}>Pleito eleitoral</p>
-            <h1>Locais de votação</h1>
-            <p>Cadastre e acompanhe zona, endereço e capacidade de cada ponto de votação.</p>
-          </div>
-        </section>
+        <ListagemBanner
+          titulo="Locais de votação"
+          descricao="Cadastre e acompanhe zona, endereço e capacidade de cada ponto de votação."
+        />
         <ListagemBar
           searchPlaceholder="Busque por local, endereço, bairro ou zona"
           searchValue={search}

@@ -72,8 +72,8 @@ export function AlterarSenhaModal({ codigoUsuario, onClose, onSuccess }: Alterar
   };
 
   return (
-    <div className="modalOverlay" onClick={() => !loading && onClose()}>
-      <div className={`modalContent ${styles.modalSenha}`} onClick={(e) => e.stopPropagation()}>
+    <div className="modalOverlay">
+      <div className={`modalContent ${styles.modalSenha}`}>
         <div className={styles.modalHeader}>
           <h2 className={styles.modalTitle}>ALTERAR SENHA</h2>
         </div>

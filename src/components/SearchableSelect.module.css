@@ -173,6 +173,16 @@
   background: #d1fae5;
 }
 
+.optionDisabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+  background: #f9fafb;
+}
+
+.optionDisabled:hover {
+  background: #f9fafb;
+}
+
 .optionEmpty {
   padding: 0.75rem;
   font-size: 0.875rem;

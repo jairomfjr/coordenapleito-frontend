@@ -153,7 +153,15 @@ export function usuarioPodeVisualizarRecurso(
   return hasPermission(user, `${recurso}.visualizar`);
 }
 
+export const PERMISSAO_INICIO_GRAFICOS_COORDENADORES = 'inicio.graficos-coordenadores';
+
 export const PERMISSAO_LOCAL_VOTACAO_BLOQUEAR_CAMPOS = 'local-votacao.bloquear-campos';
+
+export function usuarioPodeVerGraficosCoordenadores(
+  user: AuthenticationModel | null | undefined
+): boolean {
+  return hasPermission(user, PERMISSAO_INICIO_GRAFICOS_COORDENADORES);
+}
 
 /** Grupo com bloqueio sinalizado: só Coordenadores permanece editável. */
 export function usuarioTemBloqueioCamposLocalVotacao(

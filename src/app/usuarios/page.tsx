@@ -17,7 +17,7 @@ import type {
   GrupoModelBasico,
 } from '@/types/api';
 import {
-  ListagemTitulo,
+  ListagemBanner,
   ListagemBar,
   ListagemTable,
   ListagemPagination,
@@ -292,7 +292,10 @@ export default function UsuariosPage() {
   return (
     <>
     <ListagemPageWrapper>
-      <ListagemTitulo recurso="Usuários" />
+      <ListagemBanner
+        titulo="Usuários"
+        descricao="Cadastre os usuários e defina os grupos de acesso ao sistema."
+      />
       <ListagemBar
         searchPlaceholder="Busque por nome, CPF ou e-mail"
         searchValue={search}

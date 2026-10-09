@@ -177,11 +177,13 @@ async function proxy(request: NextRequest, pathSegments: string[]): Promise<Next
       headers: forwardResponseHeaders(upstream),
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
       {
+        status: 502,
+        title: 'Serviço indisponível',
         error: 'proxy_fetch_failed',
-        message,
+        userMessage:
+          'Não foi possível conectar ao servidor. Verifique sua internet e tente novamente em alguns segundos. Se o problema continuar, o sistema pode estar em atualização.',
       },
       { status: 502 }
     );

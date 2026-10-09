@@ -49,7 +49,7 @@ export default function PageLoading({ variant = 'default' }: Props) {
       aria-labelledby="page-loading-title"
       aria-describedby="page-loading-desc"
     >
-      <div className={`modalContent ${styles.modalBox}`}>
+      <div className={`modalContent ${styles.modalBox}`} data-modal-top-close>
         <div className={styles.spinner} aria-hidden />
         <p id="page-loading-title" className={styles.title}>
           {title}

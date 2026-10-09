@@ -53,3 +53,23 @@ export function getSseApiBaseURL(): string {
   }
   return resolveApiBaseURLForClient();
 }
+
+/**
+ * Base WebSocket. O Route Handler do Next não faz upgrade de WS:
+ * em localhost aponta direto para a API (:8080); em produção usa a mesma origem (Nginx).
+ */
+export function getWsApiBaseURL(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_WS_URL;
+  if (fromEnv && fromEnv.trim() !== '') {
+    return trimTrailingSlash(fromEnv.trim());
+  }
+  if (typeof window === 'undefined') {
+    return '';
+  }
+  const host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') {
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    return `${protocol}//${host}:8080${API_PATH}`;
+  }
+  return resolveApiBaseURLForClient().replace(/^http/, 'ws');
+}

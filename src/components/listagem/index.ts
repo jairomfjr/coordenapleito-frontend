@@ -1,4 +1,5 @@
 export { ListagemTitulo } from './ListagemTitulo';
+export { ListagemBanner } from './ListagemBanner';
 export { ListagemBar } from './ListagemBar';
 export { ListagemTable } from './ListagemTable';
 export type { Coluna } from './ListagemTable';

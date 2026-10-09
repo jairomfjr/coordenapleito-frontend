@@ -12,6 +12,7 @@ import {
   Settings,
   Vote,
   UserCheck,
+  FileBarChart,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -155,6 +156,19 @@ export function Sidebar({ isOpen, onClose, collapsed, allowCollapse = true, onTo
           >
             <UserCheck size={24} strokeWidth={1.75} className={styles.sidebarIcon} />
             <span className={styles.sidebarLabel}>Coordenador</span>
+          </SidebarNavLink>
+        )}
+
+        {userCanSeeMenuHref(user, '/relatorios') && (
+          <SidebarNavLink
+            href="/relatorios"
+            onClick={onClose}
+            className={`${styles.sidebarIconLink} ${pathname === '/relatorios' || pathname.startsWith('/relatorios/') ? styles.sidebarIconLinkActive : ''}`}
+            title="Relatório"
+            aria-label="Relatório"
+          >
+            <FileBarChart size={24} strokeWidth={1.75} className={styles.sidebarIcon} />
+            <span className={styles.sidebarLabel}>Relatório</span>
           </SidebarNavLink>
         )}
 
