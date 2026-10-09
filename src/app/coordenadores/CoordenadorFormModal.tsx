@@ -73,14 +73,14 @@ export function CoordenadorFormModal({
                 <UserCheck size={26} strokeWidth={1.75} />
               </div>
               <h2>Coordenador</h2>
-              <p>Cadastre o responsável e vincule o local de trabalho e o local de votação.</p>
+              <p>Cadastre o responsável e informe onde deseja coordenar e onde vota.</p>
             </div>
           </aside>
 
           <form className={`${styles.form} ${wideStyles.form}`} onSubmit={onSubmit}>
             <header className={styles.header}>
               <h3 id="coord-modal-title">{editando ? 'Editar cadastro' : 'Novo cadastro'}</h3>
-              <p>Todos os campos são obrigatórios, inclusive os dois locais de votação.</p>
+              <p>Todos os campos são obrigatórios, inclusive onde deseja coordenar e onde vota.</p>
             </header>
 
             <div className={`${styles.body} ${wideStyles.body}`}>
@@ -144,7 +144,7 @@ export function CoordenadorFormModal({
               <section className={styles.section}>
                 <h4 className={styles.sectionTitle}>Locais</h4>
                 <div className={styles.field}>
-                  <span className={styles.label}>Local de trabalho *</span>
+                  <span className={styles.label}>Onde deseja coordenar? *</span>
                   <SearchableSelect
                     id="coord-local-trabalho"
                     required
@@ -156,14 +156,14 @@ export function CoordenadorFormModal({
                       onChange({ ...form, localTrabalhoCodigo: codigo });
                     }}
                     options={opcoesTrabalho}
-                    placeholder="Selecione o local de trabalho"
+                    placeholder="Selecione onde deseja coordenar"
                     searchPlaceholder="Pesquisar por zona ou nome do local..."
-                    aria-label="Local de trabalho"
+                    aria-label="Onde deseja coordenar?"
                     maxListHeight={280}
                   />
                 </div>
                 <div className={styles.field}>
-                  <span className={styles.label}>Local de votação *</span>
+                  <span className={styles.label}>Onde você vota? *</span>
                   <SearchableSelect
                     id="coord-local-votacao"
                     required
@@ -172,9 +172,9 @@ export function CoordenadorFormModal({
                       onChange({ ...form, localVotacaoCodigo: value == null ? '' : String(value) })
                     }
                     options={opcoesVotacao}
-                    placeholder="Selecione o local de votação"
+                    placeholder="Selecione onde você vota"
                     searchPlaceholder="Pesquisar por zona ou nome do local..."
-                    aria-label="Local de votação"
+                    aria-label="Onde você vota?"
                     maxListHeight={280}
                   />
                 </div>

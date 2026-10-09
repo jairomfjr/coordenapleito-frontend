@@ -187,7 +187,7 @@ export function GraficosCoordenadores({ data }: { data: CoordenadorVinculoResumo
           </ChartCard>
         )}
         {rankingVagas.length > 0 && (
-          <ChartCard titulo="Onde ainda faltam coordenadores" hint="Locais de trabalho com mais vagas abertas.">
+          <ChartCard titulo="Onde ainda faltam coordenadores" hint="Locais com mais vagas abertas para coordenar.">
             <ResponsiveContainer width="100%" height={Math.max(180, rankingVagas.length * 34)}>
               <BarChart data={rankingVagas} layout="vertical" margin={{ left: 8, right: 16 }}>
                 <CartesianGrid horizontal={false} stroke="#f1eaea" />

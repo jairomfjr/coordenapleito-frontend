@@ -34,7 +34,7 @@ export function erroCpfInvalido(): ApiErrorView {
 
 export function erroCapacidadeEsgotada(): ApiErrorView {
   return erroSimples(
-    'Local de trabalho sem vaga',
-    'O local de trabalho selecionado já atingiu o número máximo de coordenadores. Escolha outro local.'
+    'Sem vaga para coordenar',
+    'O local escolhido para coordenar já atingiu o número máximo de coordenadores. Escolha outro.'
   );
 }

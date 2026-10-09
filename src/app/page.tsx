@@ -27,7 +27,7 @@ export default function HomePage() {
     <ListagemPageWrapper>
       <ListagemBanner
         titulo="Início"
-        descricao="Acompanhe, em tempo real, os coordenadores vinculados a cada local de trabalho."
+        descricao="Acompanhe, em tempo real, os coordenadores vinculados a cada local onde desejam coordenar."
       />
       {podeVerGraficos ? (
         <CoordenadorVinculosDashboard />

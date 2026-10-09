@@ -370,7 +370,7 @@ export function CadastroCoordenadorPublicoForm() {
 
       <div className={styles.grid2}>
         <div className={styles.field}>
-          <span className={styles.label}>Local de trabalho *</span>
+          <span className={styles.label}>Onde deseja coordenar? *</span>
           <SearchableSelect
             required={camposLiberados}
             disabled={!camposLiberados}
@@ -383,20 +383,20 @@ export function CadastroCoordenadorPublicoForm() {
               setForm((atual) => ({ ...atual, localTrabalhoCodigo: codigo }));
             }}
             options={opcoesTrabalho}
-            placeholder="Selecione o local de trabalho"
+            placeholder="Selecione onde deseja coordenar"
             searchPlaceholder="Pesquisar local..."
-            aria-label="Local de trabalho"
+            aria-label="Onde deseja coordenar?"
           />
           {localTrabalho && (
             <p className={`${styles.hint} ${localTrabalho.esgotado ? styles.hintWarn : ''}`}>
               {localTrabalho.esgotado
-                ? 'Capacidade esgotada neste local de trabalho.'
+                ? 'Não há vaga para coordenar neste local.'
                 : `${localTrabalho.vagasDisponiveis} vaga(s) disponível(is) de ${localTrabalho.capacidade}.`}
             </p>
           )}
         </div>
         <div className={styles.field}>
-          <span className={styles.label}>Local de votação *</span>
+          <span className={styles.label}>Onde você vota? *</span>
           <SearchableSelect
             required={camposLiberados}
             disabled={!camposLiberados}
@@ -408,9 +408,9 @@ export function CadastroCoordenadorPublicoForm() {
               }))
             }
             options={opcoesVotacao}
-            placeholder="Selecione o local de votação"
+            placeholder="Selecione onde você vota"
             searchPlaceholder="Pesquisar local..."
-            aria-label="Local de votação"
+            aria-label="Onde você vota?"
           />
         </div>
       </div>

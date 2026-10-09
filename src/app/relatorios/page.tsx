@@ -32,7 +32,7 @@ const COLUNAS_ZONA: Coluna<VinculoItemModel>[] = [
 const COLUNAS_LOCAL: Coluna<VinculoItemModel>[] = [
   {
     key: 'nome',
-    label: 'Local de trabalho',
+    label: 'Onde deseja coordenar?',
     render: (item) => `Zona ${item.zona} — ${item.nome}`,
   },
   { key: 'capacidade', label: 'Capacidade' },
@@ -85,7 +85,7 @@ export default function RelatoriosPage() {
     <ListagemPageWrapper>
       <ListagemBanner
         titulo="Relatórios"
-        descricao="Ocupação dos coordenadores por zona e local de trabalho."
+        descricao="Ocupação dos coordenadores por zona e por onde desejam coordenar."
       />
       {loading && <p className={listagemStyles.loading}>Carregando...</p>}
       {erro && !loading && <p className={homeStyles.empty}>{erro}</p>}

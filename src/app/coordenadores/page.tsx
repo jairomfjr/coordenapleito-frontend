@@ -35,12 +35,12 @@ const COLUNAS: Coluna<CoordenadorModelBasico>[] = [
   { key: 'email', label: 'E-mail' },
   {
     key: 'localTrabalho',
-    label: 'Local de trabalho',
+    label: 'Onde deseja coordenar?',
     render: (item) => (item.localTrabalho ? rotuloLocalVotacao(item.localTrabalho) : '—'),
   },
   {
     key: 'localVotacao',
-    label: 'Local de votação',
+    label: 'Onde você vota?',
     render: (item) => (item.localVotacao ? rotuloLocalVotacao(item.localVotacao) : '—'),
   },
 ];
@@ -140,7 +140,7 @@ export default function CoordenadoresPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.localTrabalhoCodigo || !form.localVotacaoCodigo) {
-      toast.error('Selecione o local de trabalho e o local de votação.');
+      toast.error('Selecione onde deseja coordenar e onde você vota.');
       return;
     }
     setFormLoading(true);
@@ -181,7 +181,7 @@ export default function CoordenadoresPage() {
       <ListagemPageWrapper>
         <ListagemBanner
           titulo="Coordenadores"
-          descricao="Cadastre os coordenadores e vincule o local de trabalho e o local de votação."
+          descricao="Cadastre os coordenadores e informe onde desejam coordenar e onde votam."
         />
         <ListagemBar
           searchPlaceholder="Busque por nome, CPF, e-mail ou local"
