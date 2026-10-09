@@ -28,8 +28,16 @@ const HOP_BY_HOP = new Set([
 /**
  * SPA envia Bearer; cookies HttpOnly duplicam o JWT e estouram maxHttpHeaderSize do Tomcat.
  * Não encaminhar Cookie ao backend — o Next ainda precisa aceitar o request (ver NODE_OPTIONS).
+ * Origin não segue para a API: a chamada do BFF é servidor a servidor. Se o Origin do
+ * browser chegar no Spring, o CORS rejeita o POST com 403.
  */
-const STRIP_REQUEST_HEADERS = new Set(['cookie', ...HOP_BY_HOP]);
+const STRIP_REQUEST_HEADERS = new Set([
+  'cookie',
+  'origin',
+  'access-control-request-method',
+  'access-control-request-headers',
+  ...HOP_BY_HOP,
+]);
 
 function forwardRequestHeaders(request: NextRequest): Headers {
   const headers = new Headers();
