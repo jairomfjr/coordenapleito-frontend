@@ -51,8 +51,7 @@ export default function LoginCard({ fontSizeLevel = 0 }: LoginCardProps) {
           className={styles.cardDesc}
           style={{ fontSize: `${descSize}px` }}
         >
-          Para acessar, utilize as mesmas credenciais de acesso da Secretaria da
-          Proteção Social.
+          Informe seu CPF e senha para acessar o sistema.
         </p>
         <form
           className={styles.loginForm}
@@ -109,6 +108,15 @@ export default function LoginCard({ fontSizeLevel = 0 }: LoginCardProps) {
               style={{ fontSize: `${linkSize}px` }}
             >
               Gerar nova senha?
+            </Link>
+          </p>
+          <p className={styles.recoveryWrap}>
+            <Link
+              href="/cadastro-coordenador"
+              className={styles.recoveryLink}
+              style={{ fontSize: `${linkSize}px` }}
+            >
+              Cadastro de coordenador
             </Link>
           </p>
           <button

@@ -15,7 +15,7 @@ export function renderPdfLoadingDocument(doc: Document, pageTitle: string): void
       margin: 0;
       min-height: 100%;
       background: #ffffff;
-      font-family: 'Kanit', 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Kanit', sans-serif;
     }
     .overlay {
       position: fixed;
@@ -49,7 +49,7 @@ export function renderPdfLoadingDocument(doc: Document, pageTitle: string): void
       width: 3rem;
       height: 3rem;
       border: 3px solid #e2e8f0;
-      border-top-color: #317042;
+      border-top-color: #e31c23;
       border-radius: 50%;
       animation: spin 0.75s linear infinite;
     }

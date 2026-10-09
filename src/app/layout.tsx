@@ -8,10 +8,10 @@ import PublicLayout from './components/PublicLayout';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Coordenapleito - SPS',
+  title: 'Coordenapleito',
   description: 'Coordenapleito — usuários, grupos e permissões',
-  // favicon.ico em src/app/ e public/ — o App Router injeta o link automaticamente.
-  // Evitar <head> manual no layout (interfere nos ícones do Metadata API).
+  // favicon.ico fica só em src/app/ — o App Router injeta o link automaticamente.
+  // Não duplicar em public/ (conflito no path /favicon.ico).
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning
         className="font-sans antialiased"
-        style={{ fontFamily: "'Kanit', 'Segoe UI', system-ui, sans-serif" }}
+        style={{ fontFamily: 'Kanit, sans-serif' }}
       >
         {process.env.NODE_ENV === 'development' && (
           <Script

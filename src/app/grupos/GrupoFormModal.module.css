@@ -88,8 +88,8 @@
 
 .input:focus {
   outline: none;
-  border-color: #317042;
-  box-shadow: 0 0 0 3px rgba(49, 112, 66, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
 }
 
 .permissionsSection {

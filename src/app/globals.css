@@ -1,24 +1,27 @@
 /* Kanit – fonte local (sem dependência do Google Fonts) */
-@import '@fontsource/kanit/latin-400.css';
-@import '@fontsource/kanit/latin-500.css';
-@import '@fontsource/kanit/latin-600.css';
-@import '@fontsource/kanit/latin-700.css';
+@import '@fontsource/kanit/latin.css';
+@import '@fontsource/kanit/latin-ext.css';
+@import '@fontsource/kanit/latin-italic.css';
+@import '@fontsource/kanit/latin-ext-italic.css';
 
 :root {
-  /* Tema claro – alinhado à imagem (verde SPS, fundos claros) */
-  --bg: #f5f6f8;
+  --font: 'Kanit', sans-serif;
+  /* Tema claro – paleta da backgroundequipamentos (vermelho da urna, céu e colinas) */
+  --bg: #f7f4f3;
   --bg-elevated: #ffffff;
-  --sidebar: #2e6b3e;
-  --sidebar-hover: rgba(255, 255, 255, 0.08);
-  --sidebar-active: #b4ddb5;
+  --sidebar: #9b111e;
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: #ffd6d8;
   --text: #1e293b;
   --text-muted: #64748b;
-  --accent: #317042;
-  --accent-hover: #2d6340;
-  --border: #d0d0d0;
-  --border-subtle: #e5e7eb;
-  --success: #16a34a;
-  --danger: #dc2626;
+  --accent: #e31c23;
+  --accent-hover: #c4181f;
+  --accent-soft: #fde8e9;
+  --accent-rgb: 227, 28, 35;
+  --border: #e4d6d6;
+  --border-subtle: #efe6e5;
+  --success: #4c8c3a;
+  --danger: #9b111e;
   --radius: 10px;
   --radius-sm: 6px;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -39,7 +42,33 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Kanit', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-family: var(--font);
+}
+
+button,
+input,
+textarea,
+select,
+option {
+  font-family: inherit;
+}
+
+.Toastify,
+.Toastify__toast,
+.Toastify__toast-body {
+  font-family: var(--font) !important;
+}
+
+.leaflet-container,
+.leaflet-popup-content,
+.leaflet-tooltip {
+  font-family: var(--font);
+}
+
+.recharts-wrapper,
+.recharts-legend-item-text,
+.recharts-text {
+  font-family: var(--font) !important;
 }
 
 a {
@@ -54,12 +83,6 @@ a:hover {
 
 button {
   cursor: pointer;
-  font-family: inherit;
-}
-
-input,
-textarea {
-  font-family: inherit;
 }
 
 /* Padrão global: campos textuais em maiúsculo (opt-out: pesquisa, data-no-uppercase ou .modalInputNormalCase). */
@@ -80,7 +103,6 @@ input[autocomplete='new-password'] {
 /* Selects padronizados: fundo branco, borda cinza, texto escuro (conforme imagem) */
 /* overflow: visible para o combo abrir para baixo e não ser cortado pelo container */
 select {
-  font-family: inherit;
   background-color: #ffffff !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
@@ -220,7 +242,7 @@ select option {
 .modalGlobalCloseBtn:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(49, 112, 66, 0.25),
+    0 0 0 3px rgba(var(--accent-rgb), 0.25),
     0 10px 24px rgba(15, 23, 42, 0.18);
 }
 
@@ -368,8 +390,8 @@ select option {
 }
 
 .modalTabActive {
-  color: var(--accent, #317042);
-  border-bottom-color: var(--accent, #317042);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .modalTabPanel {
@@ -602,21 +624,21 @@ select option {
 .modalContent .modalBtnPrimary,
 .modalBtnPrimary {
   padding: 0.625rem 1.5rem;
-  background: linear-gradient(180deg, #317042 0%, #2d6340 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-hover) 100%);
   border: none;
   border-radius: 10px;
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(49, 112, 66, 0.35);
+  box-shadow: 0 2px 6px rgba(var(--accent-rgb), 0.35);
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
 }
 
 .modalContent .modalBtnPrimary:hover:not(:disabled),
 .modalBtnPrimary:hover:not(:disabled) {
-  background: linear-gradient(180deg, #3d7d4e 0%, #317042 100%);
-  box-shadow: 0 4px 12px rgba(49, 112, 66, 0.4);
+  background: linear-gradient(180deg, #ef3b41 0%, var(--accent) 100%);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
 }
 
 .modalContent .modalBtnPrimary:active:not(:disabled),

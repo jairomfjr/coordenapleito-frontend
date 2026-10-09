@@ -9,7 +9,6 @@ import { routerPath } from '@/lib/app-path';
 import { getUserPermissoes } from '@/lib/permissions';
 import { rotaInicialParaUsuario } from '@/lib/routePermissions';
 import PublicHeader from './components/PublicHeader';
-import PublicFooter from './components/PublicFooter';
 import LoginCard from './components/LoginCard';
 import styles from './login.module.css';
 
@@ -57,18 +56,6 @@ export default function LoginPage() {
           />
         </div>
 
-        <div className={styles.spsBanner}>
-          <Image
-            src="/LogoSPS_250x83.png"
-            alt="SPS - Secretaria da Proteção Social - Governo do Estado do Ceará"
-            width={340}
-            height={113}
-            priority
-            unoptimized
-            className={styles.spsLogo}
-          />
-        </div>
-
         <div className={styles.contentRow}>
           <div className={styles.equipamentosSection}>
             <div className={styles.systemLogoWrap}>
@@ -88,8 +75,6 @@ export default function LoginPage() {
           </div>
         </div>
       </main>
-
-      <PublicFooter />
     </div>
   );
 }

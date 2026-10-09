@@ -181,6 +181,94 @@ export interface GrupoInput {
   permissoesCodigos?: string[];
 }
 
+export interface LocalVotacaoModelBasico {
+  id: number;
+  codigo: string;
+  zona: number;
+  localVotacao: string;
+  endereco: string;
+  bairro: string;
+  qtdSecoes: number;
+  qtdEleitores: number;
+  qtdCoordenadores: number;
+}
+
+export interface LocalVotacaoInput {
+  zona: number;
+  localVotacao: string;
+  endereco: string;
+  bairro: string;
+  qtdSecoes: number;
+  qtdEleitores: number;
+  qtdCoordenadores: number;
+}
+
+export interface LocalVotacaoFilter {
+  busca?: string;
+  zona?: number;
+  bairro?: string;
+  page?: number;
+  size?: number;
+}
+
+export interface CoordenadorModelBasico {
+  id: number;
+  codigo: string;
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string;
+  localTrabalho: LocalVotacaoModelBasico;
+  localVotacao: LocalVotacaoModelBasico;
+}
+
+export interface CoordenadorInput {
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string;
+  localTrabalhoCodigo: string;
+  localVotacaoCodigo: string;
+}
+
+export interface CoordenadorFilter {
+  busca?: string;
+  page?: number;
+  size?: number;
+}
+
+export interface LocalVotacaoPublicoModel {
+  codigo: string;
+  zona: number;
+  localVotacao: string;
+  endereco: string;
+  bairro: string;
+  capacidade: number;
+  ocupados: number;
+  vagasDisponiveis: number;
+  esgotado: boolean;
+}
+
+export interface CoordenadorCpfConsultaModel {
+  existe: boolean;
+  contatoMascarado?: string;
+  mensagem: string;
+}
+
+export interface CoordenadorPublicoModel {
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string;
+  localTrabalhoCodigo: string;
+  localVotacaoCodigo: string;
+}
+
+export interface CoordenadorVerificacaoModel {
+  tokenAtualizacao: string;
+  cadastro: CoordenadorPublicoModel;
+}
+
 export interface PermissaoInput {
   nome: string;
   descricao?: string;

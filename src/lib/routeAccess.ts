@@ -227,7 +227,7 @@ const PREFIXOS_PERMITIDOS_GESTAO_SPS_EXCLUSIVO = [
   '/periodos-acoes',
 ];
 
-const PREFIXOS_ADMINISTRACAO = ['/usuarios', '/grupos', '/permissoes'];
+const PREFIXOS_ADMINISTRACAO = ['/usuarios', '/grupos', '/permissoes', '/locais-votacao', '/coordenadores'];
 
 const PREFIXOS_PROGRAMAS_SOCIAIS = ['/cmic', '/ceara-sem-fome', '/vale-gas', '/secofi'];
 

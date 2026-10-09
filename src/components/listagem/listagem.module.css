@@ -95,7 +95,7 @@
 
 .barFiltroInline input:focus {
   outline: none;
-  border-color: #317042;
+  border-color: var(--accent);
 }
 
 /**
@@ -132,7 +132,7 @@
 
 .barFiltroComLabel select:focus {
   outline: none;
-  border-color: #317042;
+  border-color: var(--accent);
 }
 
 .searchWrap {
@@ -159,7 +159,7 @@
 
 .searchWrap input:focus {
   outline: none;
-  border-color: #317042;
+  border-color: var(--accent);
 }
 
 /* Selects da barra de listagem: mesmo padrão do campo de busca (borda e foco) */
@@ -188,7 +188,7 @@
 
 .bar .barSelect:focus {
   outline: none;
-  border-color: #317042 !important;
+  border-color: var(--accent) !important;
 }
 
 .searchIcon {
@@ -215,31 +215,31 @@
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
-  background: #317042;
+  background: var(--accent);
   color: #fff;
   transition: background 0.15s ease;
 }
 
 .btnFiltros:hover,
 .btnCadastrar:hover {
-  background: #2d6340;
+  background: var(--accent-hover);
 }
 
 .btnLimpar {
   padding: 0.35rem 0.75rem;
-  border: 1px solid #317042;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   background: #fff;
-  color: #317042;
+  color: var(--accent);
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .btnLimpar:hover {
-  background: #f0fdf4;
-  color: #2d6340;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
 }
 
 .tableWrap {
@@ -319,19 +319,19 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.35rem 0.65rem;
-  border: 1px solid #86c98a;
+  border: 1px solid #f5a3a6;
   border-radius: 6px;
   font-size: 0.8125rem;
   font-weight: 500;
   cursor: pointer;
-  background: #f0fdf4;
-  color: #317042;
+  background: var(--accent-soft);
+  color: var(--accent);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btnEditar:hover {
-  background: #dcfce7;
-  border-color: #4a9d5a;
+  background: #fad2d4;
+  border-color: var(--accent);
 }
 
 .btnExcluir {
@@ -432,9 +432,9 @@
   min-width: 2rem;
   height: 2rem;
   padding: 0 0.5rem;
-  border: 1px solid #317042;
+  border: 1px solid var(--accent);
   border-radius: 6px;
-  background: #317042;
+  background: var(--accent);
   color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
@@ -496,11 +496,11 @@
 }
 
 .switchTrack[data-checked='true'] {
-  background: #317042;
+  background: var(--accent);
 }
 
 .switchTrack[data-checked='true']:hover:not(:disabled) {
-  background: #2d6340;
+  background: var(--accent-hover);
 }
 
 .switchTrack:disabled {

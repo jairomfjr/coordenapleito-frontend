@@ -19,7 +19,7 @@ export function DashboardHeader() {
         <Link href="/" className={styles.logoMain}>
           Coordenapleito
         </Link>
-        <span className={styles.logoSub}>SPS SECRETARIA DA PROTEÇÃO SOCIAL</span>
+        <span className={styles.logoSub}>Coordenação do pleito</span>
       </div>
       <div className={styles.headerRight}>
         <div className={styles.userInfo}>

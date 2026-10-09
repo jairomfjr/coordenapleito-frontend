@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usuariosService } from '@/services/usuarios';
 import PublicHeader from '@/app/login/components/PublicHeader';
-import PublicFooter from '@/app/login/components/PublicFooter';
 import { formatCpf, onlyDigits } from '@/lib/masks';
 import styles from '@/app/login/login.module.css';
 
@@ -58,17 +57,6 @@ export default function RecuperarSenhaPage() {
             priority
             className={styles.bgImg}
             sizes="100vw"
-          />
-        </div>
-
-        <div className={styles.spsBanner}>
-          <Image
-            src="/LogoSPS_250x83.png"
-            alt="SPS - Secretaria da Proteção Social - Governo do Estado do Ceará"
-            width={340}
-            height={113}
-            priority
-            className={styles.spsLogo}
           />
         </div>
 
@@ -179,8 +167,6 @@ export default function RecuperarSenhaPage() {
           </div>
         </div>
       </main>
-
-      <PublicFooter />
     </div>
   );
 }

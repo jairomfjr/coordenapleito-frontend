@@ -26,8 +26,7 @@ function criarTopoExportInstitucional(larguraPx: number): HTMLDivElement {
   header.style.paddingLeft = '18px';
   header.style.paddingRight = '18px';
   header.style.gap = '14px';
-  header.style.fontFamily =
-    'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+  header.style.fontFamily = 'Kanit, sans-serif';
 
   const marca = document.createElement('span');
   marca.textContent = 'Coordenapleito';
@@ -38,7 +37,7 @@ function criarTopoExportInstitucional(larguraPx: number): HTMLDivElement {
   marca.style.letterSpacing = '-0.02em';
 
   const subtitulo = document.createElement('span');
-  subtitulo.textContent = 'SPS SECRETARIA DA PROTEÇÃO SOCIAL';
+  subtitulo.textContent = 'COORDENAPLEITO';
   subtitulo.style.color = '#ffffff';
   subtitulo.style.fontWeight = '600';
   subtitulo.style.fontSize = '11px';

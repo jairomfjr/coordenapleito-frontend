@@ -55,7 +55,7 @@
 }
 
 .itemLabel:hover {
-  background: color-mix(in srgb, var(--accent, #317042) 6%, var(--bg-elevated));
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-elevated));
 }
 
 .itemLabelDisabled {

@@ -35,7 +35,7 @@
   align-items: center;
   gap: 0.625rem;
   padding: 0.875rem 1.25rem;
-  background: linear-gradient(180deg, #317042 0%, #2d6340 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-hover) 100%);
   border: none;
   cursor: pointer;
   font-size: 1rem;
@@ -46,11 +46,11 @@
 }
 
 .trigger:hover {
-  background: linear-gradient(180deg, #3d7d4e 0%, #317042 100%);
+  background: linear-gradient(180deg, #ef3b41 0%, var(--accent) 100%);
 }
 
 .trigger:focus-visible {
-  outline: 2px solid #317042;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .accordionNested .icon {
-  color: #317042;
+  color: var(--accent);
   opacity: 1;
 }
 
@@ -113,5 +113,5 @@
   border-radius: 0 0 8px 8px;
   margin-top: 2px;
   margin-left: 0.5rem;
-  border-left: 3px solid #317042;
+  border-left: 3px solid var(--accent);
 }

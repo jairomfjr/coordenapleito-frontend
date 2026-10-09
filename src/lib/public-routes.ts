@@ -1,7 +1,12 @@
 import { getAppBasePath } from '@/lib/app-base-path';
 
 /** Rotas do Next acessíveis sem login (path sem basePath). */
-export const PUBLIC_ROUTE_PREFIXES = ['/login', '/recuperar-senha', '/mapas/publico'] as const;
+export const PUBLIC_ROUTE_PREFIXES = [
+  '/login',
+  '/recuperar-senha',
+  '/cadastro-coordenador',
+  '/mapas/publico',
+] as const;
 
 /** Remove o prefixo do Next (`NEXT_PUBLIC_BASE_PATH`) do pathname. */
 export function stripAppBasePath(pathname: string | null | undefined): string {

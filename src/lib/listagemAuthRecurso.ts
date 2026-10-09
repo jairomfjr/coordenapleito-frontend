@@ -5,6 +5,8 @@
 export const LISTAGEM_AUTH_RECURSO_POR_PATH: Record<string, string> = {
   '/usuarios': 'usuario',
   '/grupos': 'grupo',
+  '/locais-votacao': 'local-votacao',
+  '/coordenadores': 'coordenador',
   '/modulos-operacionais': 'modulo-operacional',
   '/permissoes': 'permissao',
   '/mensagens': 'mensagem-admin',

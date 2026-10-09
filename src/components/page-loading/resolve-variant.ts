@@ -45,6 +45,8 @@ const LIST_ROUTE_PREFIXES = [
   '/generos',
   '/orientacoes-sexuais',
   '/grupos',
+  '/locais-votacao',
+  '/coordenadores',
   '/permissoes',
   '/coordenacao-basica',
   '/inclusao-social',
@@ -57,6 +59,9 @@ function matchesPrefix(pathname: string, prefix: string): boolean {
 export function resolvePageLoadingVariant(pathname: string): PageLoadingVariant {
   if (pathname === '/login' || pathname.startsWith('/login/')) return 'minimal';
   if (pathname === '/recuperar-senha' || pathname.startsWith('/recuperar-senha/')) return 'minimal';
+  if (pathname === '/cadastro-coordenador' || pathname.startsWith('/cadastro-coordenador/')) {
+    return 'minimal';
+  }
 
   if (pathname === '/organograma' || pathname.startsWith('/organograma/')) return 'organogram';
 

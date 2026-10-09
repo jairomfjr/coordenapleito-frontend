@@ -10,6 +10,8 @@ import {
   Shield,
   Key,
   Settings,
+  Vote,
+  UserCheck,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -127,6 +129,32 @@ export function Sidebar({ isOpen, onClose, collapsed, allowCollapse = true, onTo
           >
             <Home size={24} strokeWidth={1.75} className={styles.sidebarIcon} />
             <span className={styles.sidebarLabel}>Início</span>
+          </SidebarNavLink>
+        )}
+
+        {userCanSeeMenuHref(user, '/locais-votacao') && (
+          <SidebarNavLink
+            href="/locais-votacao"
+            onClick={onClose}
+            className={`${styles.sidebarIconLink} ${pathname === '/locais-votacao' || pathname.startsWith('/locais-votacao/') ? styles.sidebarIconLinkActive : ''}`}
+            title="Local de votação"
+            aria-label="Local de votação"
+          >
+            <Vote size={24} strokeWidth={1.75} className={styles.sidebarIcon} />
+            <span className={styles.sidebarLabel}>Local de votação</span>
+          </SidebarNavLink>
+        )}
+
+        {userCanSeeMenuHref(user, '/coordenadores') && (
+          <SidebarNavLink
+            href="/coordenadores"
+            onClick={onClose}
+            className={`${styles.sidebarIconLink} ${pathname === '/coordenadores' || pathname.startsWith('/coordenadores/') ? styles.sidebarIconLinkActive : ''}`}
+            title="Coordenador"
+            aria-label="Coordenador"
+          >
+            <UserCheck size={24} strokeWidth={1.75} className={styles.sidebarIcon} />
+            <span className={styles.sidebarLabel}>Coordenador</span>
           </SidebarNavLink>
         )}
 

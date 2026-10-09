@@ -11,7 +11,7 @@ interface PublicHeaderProps {
 export default function PublicHeader({ fontSize = 1, onFontSizeChange }: PublicHeaderProps) {
   return (
     <header className={styles.topHeader} style={{ fontSize: `${fontSize}rem` }}>
-      <span className={styles.headerLeft}>Coordenapleito | PORTAL SPS</span>
+      <span className={styles.headerLeft}>Coordenapleito</span>
       <div className={styles.headerRight}>
         <span className={styles.acessibilidade}>Acessibilidade</span>
         <button

@@ -1,0 +1,23 @@
+.shell {
+  max-width: min(1360px, 98vw) !important;
+  width: 98% !important;
+  min-height: min(88vh, 780px) !important;
+  max-height: calc(100vh - 0.75rem) !important;
+  overflow: visible !important;
+}
+
+.layout {
+  grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.45fr) !important;
+  min-height: min(88vh, 780px) !important;
+  max-height: none !important;
+  overflow: visible;
+}
+
+.form {
+  overflow: visible !important;
+}
+
+.body {
+  overflow: visible !important;
+  padding-bottom: 2rem;
+}

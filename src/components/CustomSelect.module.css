@@ -32,7 +32,7 @@
 }
 
 .wrapperOpen .trigger {
-  border-color: var(--accent, #317042);
+  border-color: var(--accent);
   outline: none;
 }
 
@@ -81,11 +81,11 @@
 }
 
 .optionSelected {
-  background: #ecfdf5;
-  color: var(--accent, #317042);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-weight: 500;
 }
 
 .optionSelected:hover {
-  background: #d1fae5;
+  background: #fad2d4;
 }

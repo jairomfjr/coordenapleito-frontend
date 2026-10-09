@@ -4,10 +4,10 @@
   justify-content: center;
   border-radius: 50%;
   background: linear-gradient(160deg, #e8f5ec 0%, #d1e7dd 55%, #c5e0d0 100%);
-  color: #317042;
+  color: var(--accent);
   flex-shrink: 0;
   box-sizing: border-box;
-  border: 1px solid rgba(49, 112, 66, 0.18);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
 }
 
 .sm {

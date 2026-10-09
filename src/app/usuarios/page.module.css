@@ -24,9 +24,9 @@
 
 /* Contornos distintos por variante (atribuída por grupo via hash do código) */
 .grupoChip[data-variant='0'] {
-  border-color: #317042;
-  color: #1a4d2e;
-  background: #f0fdf4;
+  border-color: var(--accent);
+  color: var(--sidebar);
+  background: var(--accent-soft);
 }
 
 .grupoChip[data-variant='1'] {

@@ -7,6 +7,7 @@ import {
   usuarioPodeAcessarPaginaRecurso,
   usuarioPodeListarRecurso,
   usuarioPodeVerMenuRecurso,
+  usuarioTemBloqueioCamposLocalVotacao,
 } from './permissions';
 import { rotaNegadaParaUsuario } from './routePermissions';
 
@@ -57,5 +58,29 @@ describe('RBAC estrito — menu, página e listar separados', () => {
     assert.equal(userCanSeeMenuHref(user, '/grupos'), true);
     assert.equal(rotaNegadaParaUsuario('/grupos', user), false);
     assert.equal(usuarioPodeListarRecurso(user, 'grupo'), true);
+  });
+
+  it('local-votacao.menu e local-votacao.pagina liberam menu e rota', () => {
+    const user = userComPermissoes(['local-votacao.menu', 'local-votacao.pagina', 'local-votacao.listar']);
+
+    assert.equal(userCanSeeMenuHref(user, '/locais-votacao'), true);
+    assert.equal(rotaNegadaParaUsuario('/locais-votacao', user), false);
+    assert.equal(usuarioPodeListarRecurso(user, 'local-votacao'), true);
+  });
+
+  it('coordenador.menu e coordenador.pagina liberam menu e rota', () => {
+    const user = userComPermissoes(['coordenador.menu', 'coordenador.pagina', 'coordenador.listar']);
+
+    assert.equal(userCanSeeMenuHref(user, '/coordenadores'), true);
+    assert.equal(rotaNegadaParaUsuario('/coordenadores', user), false);
+    assert.equal(usuarioPodeListarRecurso(user, 'coordenador'), true);
+  });
+
+  it('local-votacao.bloquear-campos sinaliza bloqueio dos demais campos', () => {
+    const semBloqueio = userComPermissoes(['local-votacao.editar']);
+    const comBloqueio = userComPermissoes(['local-votacao.editar', 'local-votacao.bloquear-campos']);
+
+    assert.equal(usuarioTemBloqueioCamposLocalVotacao(semBloqueio), false);
+    assert.equal(usuarioTemBloqueioCamposLocalVotacao(comBloqueio), true);
   });
 });

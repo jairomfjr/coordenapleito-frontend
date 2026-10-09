@@ -153,6 +153,15 @@ export function usuarioPodeVisualizarRecurso(
   return hasPermission(user, `${recurso}.visualizar`);
 }
 
+export const PERMISSAO_LOCAL_VOTACAO_BLOQUEAR_CAMPOS = 'local-votacao.bloquear-campos';
+
+/** Grupo com bloqueio sinalizado: só Coordenadores permanece editável. */
+export function usuarioTemBloqueioCamposLocalVotacao(
+  user: AuthenticationModel | null | undefined
+): boolean {
+  return hasPermission(user, PERMISSAO_LOCAL_VOTACAO_BLOQUEAR_CAMPOS);
+}
+
 /**
  * Técnico Casa Cidadão ou Técnico Caminhão sem perfil administrativo/operacional amplo.
  */
@@ -254,6 +263,8 @@ const HREF_MENU_PERMISSION: Record<string, string> = {
   '/': 'inicio.menu',
   '/usuarios': 'usuario.menu',
   '/grupos': 'grupo.menu',
+  '/locais-votacao': 'local-votacao.menu',
+  '/coordenadores': 'coordenador.menu',
   '/modulos-operacionais': 'modulo-operacional.menu',
   '/permissoes': 'permissao.menu',
   '/mensagens': 'mensagem-admin.menu',

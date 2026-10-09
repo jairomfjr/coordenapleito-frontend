@@ -60,6 +60,8 @@ const RECURSOS_PAGINA_PROJETO = new Set([
 const ROTAS: RotaRule[] = [
   { prefix: '/usuarios', permission: 'usuario.pagina' },
   { prefix: '/grupos', permission: 'grupo.pagina' },
+  { prefix: '/locais-votacao', permission: 'local-votacao.pagina' },
+  { prefix: '/coordenadores', permission: 'coordenador.pagina' },
   { prefix: '/modulos-operacionais', permission: 'modulo-operacional.pagina' },
   { prefix: '/permissoes', permission: 'permissao.pagina' },
   { prefix: '/mensagens', permission: 'mensagem-admin.pagina' },
