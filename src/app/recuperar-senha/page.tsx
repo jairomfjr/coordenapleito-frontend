@@ -61,18 +61,7 @@ export default function RecuperarSenhaPage() {
         </div>
 
         <div className={styles.contentRow}>
-          <div className={styles.equipamentosSection}>
-            <div className={styles.systemLogoWrap}>
-              <Image
-                src="/logoEquipamentos.png"
-                alt="Coordenapleito"
-                width={520}
-                height={195}
-                priority
-                className={styles.systemLogo}
-              />
-            </div>
-          </div>
+          <div className={styles.equipamentosSection} />
           <div className={styles.cardSection}>
             <div className={styles.loginPanelWrapper}>
               <div className={styles.loginCard}>

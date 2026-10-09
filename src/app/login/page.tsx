@@ -57,19 +57,7 @@ export default function LoginPage() {
         </div>
 
         <div className={styles.contentRow}>
-          <div className={styles.equipamentosSection}>
-            <div className={styles.systemLogoWrap}>
-              <Image
-                src="/logoEquipamentos.png"
-                alt="Coordenapleito"
-                width={520}
-                height={195}
-                priority
-                unoptimized
-                className={styles.systemLogo}
-              />
-            </div>
-          </div>
+          <div className={styles.equipamentosSection} />
           <div className={styles.cardSection}>
             <LoginCard fontSizeLevel={Math.round((fontSize - 1) * 10)} />
           </div>
